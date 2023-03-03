@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>CHECKOUT</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- library validate -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	<script src="https://kit.fontawesome.com/92d70a2fd8.js" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href= "orderform.css">
+
+</head>
+<!----------------------------------------------------BODY----------------------------------------------------------------------------------------------------------------------->
+<body>
+    <div class="wrapper">
+        <div class="menu-bar">
+            <div class="container">
+    
+                <nav class="navbar sticky-top navbar-expand-md">
+                    <a class="navbar-brand" href="HOME.html"><img src="image/BM-LOGO1.png"></a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fas fa-bars"></i> <!----icon---->
+                    </button>
+            
+                    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                      <ul class="navbar-nav ml-auto">
+            
+                        <li class="nav-item"> <!----------------------------HOME----------------------------->
+							<a class="nav-link active" href="HOME.html">HOME </a>
+						  </li>
+  
+						  <li class="nav-item"> <!----------------------------MENU----------------------------->
+							  <a class="nav-link" href="menu.html">MENU</a>
+						  </li>
+						  
+						  <li class="nav-item dropdown"> <!----------------------------SERVICE----------------------------->
+							  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								SERVICE
+							  </a>
+							  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+								<a class="dropdown-item" href="shipping.html">shipping</a>
+								<a class="dropdown-item" href="payment.html">payment</a>
+						  </div>
+						  </li>
+  
+						  <li class="nav-item dropdown"> <!----------------------------ABOUT----------------------------->
+							  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								ABOUT
+							  </a>
+							  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+								<a class="dropdown-item" href="">about us</a>
+								<a class="dropdown-item" href="Feedback.html">feedback</a>
+							  </div>
+						  </li>
+			  
+						  <li class="nav-item"> <!----------------------------CONTACT----------------------------->
+							  <a class="nav-link" href="">CONTACT</a>
+						  </li>
+                      </ul>
+                </nav>
+            </div>
+        </div> <!------------------------END OF MENU NAVIGATION BAR--------------------------------------------------------------------------------->
+<!-----------------------CHECKOUT------------------------->
+<div class="row">
+    <div class="col-75">
+        <section class="box-con">
+            <h4>Cart <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i> </span></h4>
+            <fieldset>
+        <br/>
+            <div>Fullname: <span id ="fullname"></span></div>   
+            <br/>
+			<div>Email: <span id ="email"></span></div>   
+            <br/>
+           <div> Address: <span id = "address"></span></div>              
+            <br/>
+			<div>City: <span id ="city"></span></div>   
+            <br/>
+            <div>State: <span id ="state"></span></div>         
+            <br/>
+			<div>Zip: <span id ="zip"></span></div>   
+            <br/>
+            <div>Card Info: <br/><span id = "cname"></span><span id = "ccnum"></span><br/><span id = "expmonth"></span><br/><span id ="expyear"></span><br/><span id ="cvv"></span></div>   
+            <br/><br/>
+			<!--<div>ITEMS ORDERED: <span id ="title"></span></div> -->
+			<div>Total: ₱<span id ="total"></span>.00</div> 
+				
+
+        </fieldset>
+        <br/><br/><br/><!---price---></span></p>
+            <hr>
+            <p>thank you!</p>
+    </div>
+ </section>
+
+<script>
+
+const fullname = sessionStorage.getItem('fullname');
+const email = sessionStorage.getItem('email');
+const address = sessionStorage.getItem('address');
+const city = sessionStorage.getItem('city');
+const state = sessionStorage.getItem('state');
+const zip = sessionStorage.getItem('zip');
+const cardname = sessionStorage.getItem('cname');
+const cardnumber = sessionStorage.getItem('ccnum');
+const expmonth = sessionStorage.getItem('expmonth');
+const expyear = sessionStorage.getItem('expyear');	
+const cvv = sessionStorage.getItem('cvv');
+
+document.getElementById('fullname').textContent = fullname;
+document.getElementById('email').textContent = email;
+document.getElementById('address').textContent = address;
+document.getElementById('city').textContent = city;
+document.getElementById('state').textContent = state;
+document.getElementById('zip').textContent = zip;
+document.getElementById('cname').textContent = cardname;
+document.getElementById('ccnum').textContent = cardnumber;
+document.getElementById('expmonth').textContent = expmonth;
+document.getElementById('expyear').textContent = expyear;	
+document.getElementById('cvv').textContent = cvv;
+
+const total = sessionStorage.getItem('price');
+document.getElementById('total').textContent = total;
+<!--const title = sessionStorage.getItem('title');-->
+<!--document.getElementById('title').textContent = title;-->
+
+</script>

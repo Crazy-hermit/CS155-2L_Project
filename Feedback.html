@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>BANANA MOVE | Feedback</title>
+    <link href="feedback.css" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400&display=swap" rel="stylesheet">
+	<script src="https://kit.fontawesome.com/67c66657c7.js"></script>
+ 
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</head>
+<!-------------------------------------end of head------------------------------------------->
+<!----------------------------------------------------BODY----------------------------------------------------------------------------------------------------------------------->
+<body>
+  <div class="wrapper">
+    <div class="menu-bar">
+        <div class="container">
+
+            <nav class="navbar sticky-top navbar-expand-md">
+                <a class="navbar-brand" href="HOME.html"><img src="image/BM-LOGO1.png"></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fas fa-bars"></i> <!----icon---->
+                </button>
+        
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                  <ul class="navbar-nav ml-auto">
+        
+                    <li class="nav-item"> <!----------------------------HOME----------------------------->
+                      <a class="nav-link active" href="HOME.html">HOME </a>
+                    </li>
+
+                    <li class="nav-item"> <!----------------------------MENU----------------------------->
+                        <a class="nav-link" href="MENU.html">MENU</a>
+                    </li>
+                    
+                    <li class="nav-item dropdown"> <!----------------------------SERVICE----------------------------->
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          SERVICE
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="shipping.html">shipping</a>
+            <a class="dropdown-item" href="payment.html">payment</a>
+                    </div>
+                    </li>
+
+                    <li class="nav-item"> <!----------------------------FEEDBACK----------------------------->
+                      <a class="nav-link" href="Feedback.html">FEEDBACK</a>
+                    </li>
+        
+                    <li class="nav-item"> <!----------------------------CONTACT----------------------------->
+                      <a class="nav-link" href="contact.html">CONTACT</a>
+                    </li>
+                  </ul>
+            </nav>
+        </div>
+    </div> <!------------------------END OF MENU NAVIGATION BAR--------------------------------------------------------------------------------->
+		
+    <div class="form">
+      Name: <input type="text" id="name" /> <br /><br />
+      Date: <input type="date" id="date" /> <br /><br />
+      Email: <input type="email" id="email" /> <br /><br />
+      Body: <textarea rows="5" col="30" id="bodyText"></textarea><br /><br />
+      <input type="button" id="addComent" value="Submit" />
+    </div>
+    <div id="comment_container"></div>
+
+	<!------footer------->
+	 <footer class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="footer-col">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="">Payment</a></li>
+            <li><a href="">Shipping</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Banana Move</h4>
+          <ul>
+            <li><a href="">About Us</a></li>
+            <li><a href="">Feedback</a></li>
+          
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>online shop</h4>
+          <ul>
+            <li><a href="">Products</a></li>
+          
+          </ul>
+        </div>
+     
+     <div class="footer-col">
+          <h4>Social Media</h4>
+          <ul>
+            <li><a href="https://www.instagram.com/banana.move/">Instagram</a></li>
+          </ul>
+        </div>
+     <div class = "developers">
+     
+     <h6> Developed by Cacanindin, Delloro, Fronda, Legaspi & Ibong</h6>
+   
+      
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+  <script>
+        function render(data){
+        var html = "<div class='comentBox'> <div class='leftPanelImg'> <img src='p4.jfif' width='40' height='40' /></div> <div class='rightPanel'> <span style='font-weight: bold'>"+data.name+"</span><div class='email' style='color: blue'>"+data.email+"</div><p>"+data.body+"</p><div class='date'>"+data.date+"</div></div><div class='clear'></div></div>";
+        $('#comment_container').append(html);
+    }
+
+    /* ----------------------------------------------------------------------------------------------------------------------------------------------------------     ----------------------------------------------------------------------------*/
+
+    $(document).ready(function(){
+
+        var coment = [];
+		
+		if(!localStorage.comentData){
+			localStorage.comentData = [];
+		}else{
+			coment = JSON.parse(localStorage.comentData);
+		}
+		
+
+        for(var i=0;i<coment.length;i++){
+            render(coment[i]);
+        }
+
+        $('#addComent').click(function(){
+            var addObj = {
+                "name": $('#name').val(),
+                "email": $('#email').val(),
+                "body": $('#bodyText').val(),
+                "date": $('#date').val(),
+            };
+            coment.push(addObj);
+			localStorage.comentData = JSON.stringify(coment);
+            render(addObj);
+            $('#name').val('');
+            $('#email').val('');
+            $('#bodyText').val('')
+            $('#date').val('dd/mm/yyyy');
+            
+        });
+
+
+    });
+  </script>
+
+
+</body>
+</html>

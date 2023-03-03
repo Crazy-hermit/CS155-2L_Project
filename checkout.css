@@ -1,0 +1,12 @@
+.col-75 {
+    flex: 50%;
+	float: left;
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -10px;	
+}
+body{
+    font-family: 'Poppins', sans-serif;
+	background-color: #fefbe9;
+}
