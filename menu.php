@@ -1,17 +1,4 @@
 <!DOCTYPE html>
-<?php 
-	$conn = mysqli_connect('localhost','root','','bananamove_db');
-	
-	if(isset($_POST['add_to_cart'])){
-
-		$product_name = $_POST['product_name'];
-		$product_price = $_POST['product_price'];
-		$product_image = $_POST['product_image'];
-		$product_image = $_FILES['product_image']['name'];
-		$product_image_tmp_name = $_FILES['product_image']['tmp_name'];
-		$product_image_folder = 'uploaded_img/'.$product_image;
-	}
-?>
 <html>
 <head>
 	<meta charset="UTF-8">
@@ -76,27 +63,7 @@
             </div>
         </div> <!------------------------END OF MENU NAVIGATION BAR--------------------------------------------------------------------------------->
 <!-----------------------RETURNS------------------------->
-
-<?php 
-	$select = mysqli_query($conn, "SELECT * FROM `product`");
-?>
-
-<?php
-	while($row = mysqli_fetch_assoc($select)){
-		if(mysql_num_rows($select) > 0){
-		$row = mysql_num_rows($select);
-
-?>
-			<form action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
-				<input type="hidden" id="product_name" value="<?php echo $row['name']; ?>">
-				<input type="hidden" id="product_price" value="<?php echo $row['price']; ?>">
-				<input type="hidden" id="product_image" src="uploaded_img/<?php echo $row['image']; ?>">
-			</form>
-<?php 
-		}
-	}; 
-?>
-
+	
 <div class="container">
 	<div id="root"></div>
 	<div class="sidebar">
@@ -109,57 +76,81 @@
 	</div>
 </div>
 <script>
+	
+	//*/ NEW CODE
+	
+	<?php
+
+	require_once('controller/product_controller.php');
+	require_once('model/product_model.php');
+
+	$prod_controller = new ProductController();
+
+	$products = $prod_controller->get_all_products();
+
+	//echo "console.log('" . json_encode($products) . "');";
+
+	echo "const product = " . json_encode($products) . ";";
+
+	?>
+	
+	/*/ OLD CODE
+
 	const product = [
 		{
 			id: 0,
-			image: document.getElementById("product_image").src,
-			title: document.getElementById("product_name").value,
-			price: document.getElementById("product_price").value,
+			image: 'image/breadchocolate.jpeg',
+			title: 'Banana Cake (w/ Chocolate Chips)',
+			price: 170,
 		},
 		{
 			id: 1,
-			image: document.getElementById("product_image").src,
-			title: document.getElementById("product_name").value,
-			price: document.getElementById("product_price").value,
+			image: 'image/breadalmond.jpeg',
+			title: 'Banana Cake (w/ Almonds)',
+			price: 200,
 		},
 		{
 			id: 2,
-			image: document.getElementById("product_image").src,
-			title: document.getElementById("product_name").value,
-			price: document.getElementById("product_price").value,
+			image: 'image/breadcashew.jpeg',
+			title: 'Banana Cake (w/ Cashews)',
+			price: 200,
 		},
 		{
 			id: 3,
-			image: document.getElementById("product_image").src,
-			title: document.getElementById("product_name").value,
-			price: document.getElementById("product_price").value,
+			image: 'image/breadwalnuts.jpeg',
+			title: 'Banana Cake (w/ Walnuts)',
+			price: 200,
 		},
 		{
 			id: 4,
-			image: document.getElementById("product_image").src,
-			title: document.getElementById("product_name").value,
-			price: document.getElementById("product_price").value,
+			image: 'image/dreamcake2.jpeg',
+			title: 'Cocoa Dream Cake (Regular)',
+			price: 170,
 		},
 		{
 			id: 5,
-			image: document.getElementById("product_image").src,
-			title: document.getElementById("product_name").value,
-			price: document.getElementById("product_price").value,
+			image: 'image/dreamcake2.jpeg',
+			title: 'Cocoa Dream Cake (Medium)',
+			price: 300,
 		},
 		{
 			id: 6,
-			image: document.getElementById("product_image").src,
-			title: document.getElementById("product_name").value,
-			price: document.getElementById("product_price").value,
+			image: 'image/dreamcake2.jpeg',
+			title: 'Cocoa Dream Cake (Party)',
+			price: 600,
 		},
 		{
 			id: 7,
-			image: document.getElementById("product_image").src,
-			title: document.getElementById("product_name").value,
-			price: document.getElementById("product_price").value,
+			image: 'image/revelbar2.jpeg',
+			title: 'Chocolate Revel Bar',
+			price: 170,
 		}
 		
-	];
+	]; 
+	
+	*/
+
+
 	const categories = [...new Set(product.map((item)=>
 		{return item}))]
 		let i=0;
@@ -173,7 +164,7 @@
 				</div>
 			<div class='bottom'>
 			<p>${title}</p>
-			<h2>₱ ${price}</h2>`+
+			<h2>₱ ${price}.00</h2>`+
 			"<button onclick='addtocart("+(i++)+")'>Add to cart</button>"+
 			`</div>
 			</div>`
@@ -211,7 +202,7 @@
 						<img class='rowimg' src=${image}>
 					</div>
 					<p>${title}</p>
-					<h2>₱ ${price}</h2>`+
+					<h2>₱ ${price}.00</h2>`+
 					"<i class='fa-solid fa-trash' onclick='delElement("+ (j++) +")'></i></div>"
 	
 				);
