@@ -1,6 +1,6 @@
 <?php
 
-class Product {
+class Product implements JsonSerializable { //NOTE: implements JsonSerializable to be encoded in JSON format
     private $id;
     private $name;
     private $price;
@@ -10,7 +10,7 @@ class Product {
         $this->id = $id;
         $this->name = $name;
         $this->price = $price;
-        $this->image = $image;
+        $this->image = 'image/'. $image;
     }
 
     function get_id() {
@@ -41,8 +41,17 @@ class Product {
         return $this->image;
     }
 
-    function set_id($image) {
+    function set_image($image) {
         $this->image = $image;
+    }
+
+    function jsonSerialize() {
+        return [
+            'id' => $this->get_id(),
+            'title' => $this->get_name(), //NOTE: this should be named "name" but it would not work with pre-existing code
+            'price' => intval($this->get_price()),
+            'image' => $this->get_image()
+        ];
     }
 }
 
