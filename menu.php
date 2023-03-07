@@ -35,7 +35,7 @@
 						  </li>
   
 						  <li class="nav-item"> <!----------------------------MENU----------------------------->
-							  <a class="nav-link" href="MENU.html">MENU</a>
+							  <a class="nav-link" href="menu.php">MENU</a>
 						  </li>
 						  
 						  <li class="nav-item dropdown"> <!----------------------------SERVICE----------------------------->
@@ -235,7 +235,7 @@
 			<div class="footer-col">
 				<h4>Menu</h4>
 				<ul>
-					<li><a href="menu.html">Products</a></li>
+					<li><a href="menu.php">Products</a></li>
 				
 				</ul>
 			</div>
