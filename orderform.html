@@ -126,7 +126,7 @@
                 <label>
                 <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
                 </label>
-                <button type ="submit" class="btn">Proceed to Checkout</button>
+                <button type ="submit" class="btn" onclick="saveTransaction()">Proceed to Checkout</button>
 				<input type="reset" value= "reset" class="btn" id="reset">
             </form>
         </section>
@@ -235,5 +235,16 @@ window.location.href = "checkout.html";
         },
     });
 </script>
+
+
+<script>
+    function saveTransaction() {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.open("GET", "ajax-php-util/create_transaction.php?price=" + sessionStorage.getItem("price") + "&address=" + document.getElementById('adr').value, true);
+        xmlhttp.send();
+    }
+</script>
+
+
 </body>
 </html>
