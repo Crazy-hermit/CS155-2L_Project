@@ -9,7 +9,7 @@ class Product implements JsonSerializable { //NOTE: implements JsonSerializable 
     function __construct($id, $name, $price, $image) {
         $this->id = $id;
         $this->name = $name;
-        $this->price = $price;
+        $this->price = intval($price);
         $this->image = 'image/'. $image;
     }
 
@@ -49,7 +49,7 @@ class Product implements JsonSerializable { //NOTE: implements JsonSerializable 
         return [
             'id' => $this->get_id(),
             'title' => $this->get_name(), //NOTE: this should be named "name" but it would not work with pre-existing code
-            'price' => intval($this->get_price()),
+            'price' => $this->get_price(),
             'image' => $this->get_image()
         ];
     }
