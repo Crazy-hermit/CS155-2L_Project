@@ -25,6 +25,9 @@ if(isset($_POST['username']) && isset($_POST['password'])){
         if (mysqli_num_rows($result) === 1) {
 			$row = mysqli_fetch_assoc($result);
             if ($row['username'] === $username && $row['password'] === $password) {
+                if (session_status() === PHP_SESSION_NONE) {
+                    session_start();
+                }
             	$_SESSION['username'] = $row['username'];
             	$_SESSION['acct_id'] = $row['acct_id'];
                 $_SESSION['type'] = $row['type'];

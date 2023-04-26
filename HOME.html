@@ -61,12 +61,26 @@
                         </li>
 
                         <li class="nav-item"> <!----------------------------LOGIN----------------------------->
-                            <a class="nav-link" href="login.php">LOGIN</a>
+                            <a class="nav-link" id="login-link" href="login.php">LOGIN</a>
                         </li>
                       </ul>
                 </nav>
             </div>
         </div> <!------------------------END OF MENU NAVIGATION BAR--------------------------------------------------------------------------------->
+
+        <script>
+
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                console.log(this.responseText);
+                document.getElementById("login-link").innerHTML = "LOGOUT";
+            }
+        };
+        xmlhttp.open("GET", "ajax-php-util/get_php_session.php?key=acct_id", true);
+        xmlhttp.send();
+        
+        </script>
 
         <!--------------------------------------- LANDING PAGE ----------------------------------------------------------------------------->
 
